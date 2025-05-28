@@ -1,0 +1,42 @@
+[
+    {
+        "rank": "6",
+        "suit": "Spades",
+        "value": 6
+    },
+    {
+        "rank": "4",
+        "suit": "Diamonds",
+        "value": 4
+    },
+    {
+        "rank": "6",
+        "suit": "Diamonds",
+        "value": 6
+    },
+    {
+        "rank": "3",
+        "suit": "Clubs",
+        "value": 3
+    },
+    {
+        "rank": "5",
+        "suit": "Clubs",
+        "value": 5
+    },
+    {
+        "rank": "2",
+        "suit": "Diamonds",
+        "value": 2
+    },
+    {
+        "rank": "3",
+        "suit": "Diamonds",
+        "value": 3
+    },
+    {
+        "rank": "5",
+        "suit": "Spades",
+        "value": 5
+    }
+]
