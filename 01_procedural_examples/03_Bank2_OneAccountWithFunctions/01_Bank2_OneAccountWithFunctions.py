@@ -57,7 +57,7 @@ def withdrawAmount(withdraw_amount, password):
         print(f"Amount before deposit {accountBalance}")
         return accountBalance
 
-
+createAccount("Joe", 100, 'soup') 
 while True:
     print('Press b to get the balance')
     print('Press d to make a deposit')
@@ -80,7 +80,7 @@ while True:
         user_pswd = input('Please enter your password ')
         the_balance = getBalance(user_pswd)
         if the_balance is not None:
-            print("the balance is", balance)
+            print("the balance is", the_balance)
 
     elif user_input == 'd':
         try:
@@ -96,45 +96,28 @@ while True:
         if user_pswd != accountPassword:
             print('Incorrect Password')
         else:
-            print(f"You balance before deposit: {accountBalance}")
-            accountBalance +=deposit_amount
-            print('Your new balance is', accountBalance)
-            print()
+            deposit = depositAmount(deposit_amount, user_pswd)
+            if deposit is not None:
+                print(f"The deposit amount is {deposit}")
     
     elif user_input == 'w':
         try:
             withdraw_amount = float(input("Please enter the amount you want to withdraw "))
         except:
             print("Invalid Input")
-        
-        if withdraw_amount < 1:
-            print("Amount too low")
-            print()
-            continue
-        elif withdraw_amount > accountBalance:
-            print("The withdraw amount cannot be greater than current account balance")
-            continue
-
 
         user_pswd = input('Please enter your password ')
         if user_pswd != accountPassword:
             print('Incorrect Password')
         else:
-            print('Your balance before withdrawing was', accountBalance)
-            accountBalance -= withdraw_amount
-            print('Your new balance is', accountBalance)
+            withdraw = withdrawAmount(withdraw_amount, user_pswd)
+            if withdraw is not None:
+                print(f"The withdraw amount is {withdraw}")
 
     elif user_input == 's':
-        user_pswd = input('Please enter your password ')
-        if user_pswd != accountPassword:
-            print('Incorrect Password')
-        else:
-            print('Show:')
-            print('            Name', accountName)
-            print('            Balance:', accountBalance)
-            print('            Password:', accountPassword)
-            print()
-
+        show = show()
+        if show is not None:
+            print(show)
 
     elif user_input == 'q':
         print('Quitting program')
