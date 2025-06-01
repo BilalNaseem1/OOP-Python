@@ -1,0 +1,1 @@
+In Object-Oriented Programming (OOP), state refers to the data or attributes held by an object at a given time. 
