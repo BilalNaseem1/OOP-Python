@@ -1,0 +1,1 @@
+What the class needs to remember is in the `__init__` method

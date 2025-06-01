@@ -200,9 +200,12 @@ print(counter2.get_count()) # 11
 - `__init__()` sets up the initial state of objects
 - Each object maintains its own state independently
 
-## Next Steps
+## Differences Between Functions and Methods
+There are three key differences between a function and a method:
+1. All methods of a class must be indented under the `class` statement.
+2. All methods have a special first parameter that (by convention) is
+named `self`.
+3. Methods in a class can use instance variables, written in the form
+`self.<variableName>`
 
-- Practice creating your own classes
-- Experiment with different types of instance variables
-- Try creating multiple objects from the same class
-- Explore class inheritance and advanced OOP concepts
+#### When you write a class, you are defining a new data type.
