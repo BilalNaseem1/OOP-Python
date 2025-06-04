@@ -2,6 +2,8 @@ import pygame
 from pygame.locals import * # pygame.locals: Gives you constants like QUIT, KEYDOWN, etc., without prefixing them (e.g., pygame.QUIT).
 import sys
 
+from pathlib import Path
+
 BLACK = (0, 0, 0)
 WINDOW_WIDTH = 1920/2
 WINDOW_HEIGHT = 1080/2
