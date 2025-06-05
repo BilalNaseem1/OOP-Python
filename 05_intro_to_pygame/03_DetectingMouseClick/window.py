@@ -1,60 +1,57 @@
-# 1 - Import packages
 import pygame
-from pygame.locals import * # pygame.locals: Gives you constants like QUIT, KEYDOWN, etc., without prefixing them (e.g., pygame.QUIT).
+from pygame.locals import *
 import sys
-from pathlib import Path
+import random
 
-# 2 - Define constants
+# Define constants
 BLACK = (0, 0, 0)
-WINDOW_WIDTH = 1920/2
-WINDOW_HEIGHT = 1080/2
+WINDOW_WIDTH = 640
+WINDOW_HEIGHT = 480
 FRAMES_PER_SECOND = 30
 
-BASE_PATH = Path(__file__).resolve().parent
-print(BASE_PATH)
-pathToBall = BASE_PATH / 'images/ball.png'
+BALL_WIDTH_HEIGHT = 100
+MAX_WIDTH = WINDOW_WIDTH - BALL_WIDTH_HEIGHT
+MAX_HEIGHT = WINDOW_HEIGHT - BALL_WIDTH_HEIGHT
 
+# Initialize the world
+pygame.init()
+window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+clock = pygame.time.Clock()
 
-# 3 - Initialize the world
-pygame.init()   # pygame.init(): Initializes all Pygame modules.
-window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))     # display.set_mode(...): Creates the window with specified width and height.
-clock = pygame.time.Clock()     #   pygame.time.Clock(): Used to control the frame rate (timing).
+# Load assets: image(s), sound(s), etc.
+ballImage = pygame.image.load('images/ball.png')
 
+# Initialize variables
+ballX = random.randrange(MAX_WIDTH)
+ballY = random.randrange(MAX_HEIGHT)
+ballRect = pygame.Rect(ballX, ballY, BALL_WIDTH_HEIGHT, BALL_WIDTH_HEIGHT)
 
-# 4 - Load assets: image(s), sound(s), etc.
-ballImage = pygame.image.load(pathToBall)
-
-# 5 - Initialize variables
-
-
-# 6 - Loop forever
+# Loop forever
 while True:
-
-    # 7 - Check for and handle events
-    for event in pygame.event.get(): # pygame.event.get() gets all the events (like mouse clicks, key presses, window close, etc.) that have occurred since the last time it was called.
+    # Check for and handle events
+    for event in pygame.event.get():
+        # Clicked the close button? Quit pygame and end the program
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
 
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            
+        # See if user clicked
+        if event.type == pygame.MOUSEBUTTONUP:
+            # Check if the click was in the rect of the ball
+            if ballRect.collidepoint(event.pos):
+                # Choose a random new location
+                ballX = random.randrange(MAX_WIDTH)
+                ballY = random.randrange(MAX_HEIGHT)
+                ballRect = pygame.Rect(ballX, ballY, BALL_WIDTH_HEIGHT, BALL_WIDTH_HEIGHT)
 
-
-    # 8 - Do any "per frame" actions
+    # Clear the window
     window.fill(BLACK)
+
+    # Draw the ball at the randomized location
+    window.blit(ballImage, (ballX, ballY))
+
+    # Update the window
     pygame.display.update()
 
-
-    # 9 - Clear the window
-    clock.tick(FRAMES_PER_SECOND)
-
-    # 10 - Draw all window elements
-    # draw ball at position 100 across (x) and 200 down (y)
-    window.blit(ballImage, (100, 200))
-
-
-    # 11 - Update the window
-    pygame.display.update()
-
-    # 12 - Slow things down a bit
+    # Slow things down a bit
     clock.tick(FRAMES_PER_SECOND)
